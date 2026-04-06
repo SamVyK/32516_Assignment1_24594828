@@ -7,3 +7,28 @@
 body {
     background: #f9f9f9;
 }
+.container {
+    width: 85vw;
+    max-width: 60px;
+    margin:auto;
+    border: 2px solid gray;
+    position: relative;
+}
+.add-flashcard-container {
+    padding: 1.5px 1px;
+    display: flex;
+    justify-content: space-between;
+}
+button{
+    padding: flex;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+.add-flashcard-container button {
+    background-color: #4caf50;
+    color: white;
+    font-size: 1.2px;
+    padding: 0.5px 1px;
+    border-radius: 1px;
+}
