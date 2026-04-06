@@ -1,0 +1,9 @@
+* {
+    font-family: "nunito", sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    background: #f9f9f9;
+}
