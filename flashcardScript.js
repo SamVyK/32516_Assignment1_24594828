@@ -48,8 +48,30 @@ function viewlist() {
     });
     div.appendChild(link);
     div.appendChild(displayAnswer);
+    let buttonContainer = document.createElement("div");
+    buttonContainer.classList.add("button-container");
+    var editButton = document.createElement("button");
+    editButton.setAttribute("class", "edit");
+    editButton.innerHTML = `<span class="material-symbols-outlined">edit_note</span>`;
+    editButton.addEventListener("click", () => {
+        editBoolean = true;
+        modifyElement = (editButton,true);
+        addQuestionFlashcard.classList.remove('hidden');
+    });
+    buttonContainer.appendChild(editButton);
+    //disableButton(false);
+    div.appendChild(buttonContainer);
     listFlashcard[0].appendChild(div);
     hideFlashcard();
 }
- 
-
+const modifyElement = (element, edit = false) => {
+    let parentDiv = element.parentElement.parentElement;
+    let parentQuestion = parentDiv.querySelector(".question-div").innerText;
+    if (edit) {
+        let parnetAnswer = parentDiv.querySelector(".answer-div").innerText;
+        answer.value = parnetAnswer;
+        question.value = parentQuestion;
+        disableButton(true);
+    }
+    parentDiv.remove();
+};
