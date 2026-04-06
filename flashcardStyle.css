@@ -9,13 +9,13 @@ body {
 }
 .container {
     width: 85vw;
-    max-width: 60px;
+    max-width: 60em;
     margin:auto;
     border: 2px solid gray;
     position: relative;
 }
 .add-flashcard-container {
-    padding: 1.5px 1px;
+    padding: 1.5em 1em;
     display: flex;
     justify-content: space-between;
 }
@@ -26,9 +26,9 @@ button{
     cursor: pointer;
 }
 .add-flashcard-container button {
-    background-color: #4caf50;
+    background-color: orange;
     color: white;
-    font-size: 1.2px;
-    padding: 0.5px 1px;
-    border-radius: 1px;
+    font-size: 1.2em;
+    padding: 0.5em 1em;
+    border-radius: 1em;
 }
