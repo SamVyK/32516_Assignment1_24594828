@@ -55,11 +55,17 @@ function viewlist() {
     editButton.innerHTML = `<span class="material-symbols-outlined">edit_note</span>`;
     editButton.addEventListener("click", () => {
         editBoolean = true;
-        modifyElement = (editButton,true);
-        addQuestionFlashcard.classList.remove('hidden');
+        modifyElement(editButton, true);
+        addQuestionFlashcard.classList.remove("hidden");
     });
     buttonContainer.appendChild(editButton);
-    //disableButton(false);
+    disableButton(false);
+    var deleteButton = document.createElement("button");
+    deleteButton.setAttribute("class", "delete");
+    deleteButton.innerHTML = `<span class="material-symbols-outlined">delete_sweep</span>`;
+    deleteButton.addEventListener("click", () => {modifyElement(deleteButton);
+    });
+    buttonContainer.appendChild(deleteButton);
     div.appendChild(buttonContainer);
     listFlashcard[0].appendChild(div);
     hideFlashcard();
@@ -74,4 +80,10 @@ const modifyElement = (element, edit = false) => {
         disableButton(true);
     }
     parentDiv.remove();
+};
+const disableButton = (value) => {
+    let editButtons = document.getElementsByClassName("edit");
+    Array.from (editButtons).forEach((element) => {
+        element.disabled = value;
+    });
 };
