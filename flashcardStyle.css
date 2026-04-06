@@ -73,15 +73,15 @@ button{
     color: red;
 }
 .material-symbols-outlined{
-    height: 2em;
+    height: 1.5em;
     width: 2em;
-    font-size: 1.5em;
+    font-size: 1.8em;
     display: grid;
     background-color: orange;
     color: white;
     place-items: center;
     justify-self: flex-end;
-    border-radius: 50%;
+    border-radius: 1.5em;
     cursor: pointer;
 }
 label {
@@ -114,4 +114,48 @@ textarea:not(:last-child) {
 }
 .hidden{
     display: none;
+}
+.card-list-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2em;
+    padding: 0.5em;
+}
+.flashcard {
+    padding:1.5em;
+    border-radius: 0.5em;
+    background-color: white;
+    box-shadow: 0 1.5em 2.5em rgba(25,0,75,0.15);
+}
+.answer-div, .question-div {
+    text-align: justify;
+}
+.answer-div {
+    font-weight: 500;
+    margin-bottom: 1em;
+    color: black;
+}
+.question-div {
+    font-weight: 500;
+    margin-bottom: 1em;
+    color: black;
+}
+.show-hide-button {
+    text-align: center;
+    background-color: orange;
+    color: white;
+    font-size: 1em;
+    padding: 0.25em 0.75em;
+    border-radius: 0.5em;
+    font-weight: 600;
+    cursor: pointer;
+    display: block
+}
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+.edit, .delete{
+    padding: 0.25em;
+    background-color: transparent;
 }
