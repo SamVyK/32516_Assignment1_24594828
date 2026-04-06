@@ -37,7 +37,7 @@ button{
     margin-top: 1.2em;
     border: 1.2px solid black;
 }
-.question-container-hidden {
+.question-container {
     display: flex;
     width: 85vw;
     max-width: 35vw;
@@ -52,7 +52,7 @@ button{
     left: 50%;
     box-shadow: 0 1.5em 2.5em rgba(25,0,75,0.15);
 }
-.question-container-hidden h2 {
+.question-container h2 {
     text-align: center;
     font-size: 2.5em;
     font-weight: 700;
