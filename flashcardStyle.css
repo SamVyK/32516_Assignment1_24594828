@@ -17,7 +17,8 @@ body {
 .add-flashcard-container {
     padding: 1.5em 1em;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-content: center;
 }
 button{
     padding: flex;
@@ -158,4 +159,14 @@ textarea:not(:last-child) {
 .edit, .delete{
     padding: 0.25em;
     background-color: transparent;
+}
+@media screen and (max-width: 768px) {
+    .card-list-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 1em;
+    }
+    .card-list-container {
+        grid-template-columns: 1fr;
+        gap: 1.5em;
+    }
 }
