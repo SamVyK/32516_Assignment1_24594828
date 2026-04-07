@@ -1,3 +1,5 @@
+const API_URL = "http://127.0.0.1:8000/flashcards";
+let editFlashcardId = null;
 const container = document.querySelector('.container');
 const addQuestionFlashcard = document.getElementById('add-question-flashcard');
 const saveButton = document.getElementById('save-button');
@@ -87,3 +89,13 @@ const disableButton = (value) => {
         element.disabled = value;
     });
 };
+async function fetchFlashcards() {
+    try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        renderFlashcards(data);
+    } catch (error) {
+        console.error("Error fetching flashcards:", error);
+    }
+}
+
