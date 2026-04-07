@@ -18,9 +18,17 @@ def get_db():
         yield db
     finally:
         db.close()
-@app.get("/flashcards", response_model=list[schemas.FlashcardResponse])
+@app.get("/flashcards")
 def read_flashcards(db: Session = Depends(get_db)):
-    return crud.get_flashcards(db)
+    cards = crud.get_flashcards(db)
+    return [
+        {
+            "id": card.id,
+            "question": card.question,
+            "answer": card.answer
+        }
+        for card in cards
+    ]
 @app.post("/flashcards", response_model=schemas.FlashcardResponse)
 def create_flashcard(flashcard: schemas.FlashcardCreate, db: Session = Depends(get_db)):
     return crud.create_flashcard(db, flashcard)

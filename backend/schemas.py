@@ -9,4 +9,4 @@ class FlashcardUpdate(FlashcardBase):
 class FlashcardResponse(FlashcardBase):
     id: int
     class Config:
-        from_attributes = True
+        orm_mode = True

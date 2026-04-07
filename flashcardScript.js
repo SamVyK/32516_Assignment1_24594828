@@ -1,5 +1,5 @@
 const API_URL = "http://127.0.0.1:8000/flashcards";
-let editFlashcardId = null;
+let editCardId = null;
 const container = document.querySelector('.container');
 const addQuestionFlashcard = document.getElementById('add-question-flashcard');
 const saveButton = document.getElementById('save-button');
@@ -89,13 +89,102 @@ const disableButton = (value) => {
         element.disabled = value;
     });
 };
-async function fetchFlashcards() {
-    try {
-        const response = await fetch(API_URL);
-        const data = await response.json();
-        renderFlashcards(data);
-    } catch (error) {
-        console.error("Error fetching flashcards:", error);
-    }
-}
 
+//------API CALLS------//
+
+async function fetchFlashcards() {
+  try {
+    const res = await fetch(API_URL);
+    const data = await res.json();
+    renderFlashcards(data);
+  } catch (err) {
+    console.error("Error fetching:", err);
+  }
+}
+function renderFlashcards(cards) {
+  const listContainer = document.querySelector(".card-list-container");
+  listContainer.innerHTML = "";
+
+  cards.forEach((card) => {
+    const div = document.createElement("div");
+    div.classList.add("flashcard");
+
+    div.innerHTML = `<p class="question-div">${card.question}</p>`;
+
+    const answer = document.createElement("p");
+    answer.classList.add("answer-div", "hidden");
+    answer.innerText = card.answer;
+
+    const toggleBtn = document.createElement("button");
+    toggleBtn.innerText = "Show/Hide";
+    toggleBtn.onclick = () => answer.classList.toggle("hidden");
+
+    const editBtn = document.createElement("button");
+    editBtn.innerText = "Edit";
+    editBtn.onclick = () => {
+      editCardId = card.id;
+      question.value = card.question;
+      answerInput.value = card.answer;
+      showForm();
+    };
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.innerText = "Delete";
+    deleteBtn.onclick = () => deleteFlashcard(card.id);
+
+    div.append(toggleBtn, answer, editBtn, deleteBtn);
+    listContainer.appendChild(div);
+  });
+}
+async function createFlashcard(card) {
+  await fetch(API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(card)
+  });
+
+  fetchFlashcards();
+}
+async function updateFlashcard(id, card) {
+  await fetch(`${API_URL}/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(card)
+  });
+
+  fetchFlashcards();
+}
+async function deleteFlashcard(id) {
+  await fetch(`${API_URL}/${id}`, {
+    method: "DELETE"
+  });
+
+  fetchFlashcards();
+}
+saveButton.addEventListener("click", async () => {
+  const q = question.value.trim();
+  const a = answerInput.value.trim();
+
+  if (!q || !a) {
+    alert("Fields cannot be empty");
+    return;
+  }
+
+  const card = { question: q, answer: a };
+
+  if (editCardId) {
+    await updateFlashcard(editCardId, card);
+    editCardId = null;
+  } else {
+    await createFlashcard(card);
+  }
+
+  question.value = "";
+  answerInput.value = "";
+  hideForm();
+});
+window.onload = fetchFlashcards;
